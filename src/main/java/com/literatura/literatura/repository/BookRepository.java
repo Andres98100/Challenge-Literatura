@@ -13,4 +13,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findAllBooksByLanguage(String language);
 
     Optional<Book> findByTitle(String title);
+
+    // los 3 libros mas descargados
+    List<Book> findTop3ByOrderByDownloadsDesc();
 }

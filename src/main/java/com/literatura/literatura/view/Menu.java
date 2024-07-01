@@ -36,6 +36,7 @@ public class Menu {
                     3. List all authors
                     4. List all authors alive in a given year
                     5. List all books by language
+                    6. List the 3 most downloaded books
                     0. Exit
                     """;
             System.out.println(menu);
@@ -48,10 +49,16 @@ public class Menu {
                 case 3 -> listAllAuthors();
                 case 4 -> listAuthorsAliveInYear();
                 case 5 -> listBooksByLanguage();
+                case 6 -> listTop3BooksMostDownloaded();
                 case 0 -> System.out.println("Goodbye!");
                 default -> System.out.println("Invalid option");
             }
         }
+    }
+
+    private void listTop3BooksMostDownloaded() {
+        bookList = bookRepository.findTop3ByOrderByDownloadsDesc();
+        bookList.forEach(System.out::println);
     }
 
     private List<DataBook> getDataBooks() {
